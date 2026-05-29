@@ -214,12 +214,16 @@
       right: 0;
       z-index: 100;
       transition: background .35s var(--ease), backdrop-filter .35s var(--ease), box-shadow .35s var(--ease), padding .35s var(--ease);
-      padding: 24px 0;
+      padding: 20px 0;
+      /* Default (top of page): subtle dark glass — ensures cream text reads over photo and pine alike */
+      background: linear-gradient(180deg, rgba(28,28,26,.42) 0%, rgba(28,28,26,.18) 70%, rgba(28,28,26,0) 100%);
+      backdrop-filter: saturate(130%) blur(8px);
+      -webkit-backdrop-filter: saturate(130%) blur(8px);
     }
     .nav.scrolled {
-      background: rgba(248,245,240,.85);
-      backdrop-filter: saturate(140%) blur(12px);
-      -webkit-backdrop-filter: saturate(140%) blur(12px);
+      background: rgba(248,245,240,.92);
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
       box-shadow: 0 1px 0 rgba(28,28,26,.06), 0 12px 30px -20px rgba(28,28,26,.18);
       padding: 14px 0;
     }
