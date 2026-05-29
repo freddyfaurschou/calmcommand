@@ -1512,7 +1512,11 @@
             </ul>
           </div>
 
-          <form class="form reveal delay-1" id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" novalidate>
+          <form class="form reveal delay-1" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+            <input type="hidden" name="access_key" value="2921f9b5-7ba6-425f-a98d-0ee159f4d62c" />
+            <input type="hidden" name="subject" value="New enquiry from CalmCommand website" />
+            <input type="hidden" name="from_name" value="CalmCommand Website" />
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
             <div class="form-row split">
               <div class="field">
                 <label for="name">Name</label>
@@ -1657,27 +1661,15 @@
         btn.disabled = true;
         setState('Sending…');
 
-        const action = form.getAttribute('action') || '';
-        const isPlaceholder = action.includes('YOUR_FORMSPREE_ID');
-
-        if (isPlaceholder) {
-          // No backend wired yet — show success state for demo.
-          setTimeout(() => {
-            setState('Message sent ✓');
-            form.reset();
-            setTimeout(reset, 3000);
-          }, 600);
-          return;
-        }
-
         try {
           const data = new FormData(form);
-          const res = await fetch(action, {
+          const res = await fetch(form.action, {
             method: 'POST',
             headers: { 'Accept': 'application/json' },
             body: data
           });
-          if (res.ok) {
+          const json = await res.json().catch(() => ({}));
+          if (res.ok && json.success) {
             setState('Message sent ✓');
             form.reset();
             setTimeout(reset, 3000);
