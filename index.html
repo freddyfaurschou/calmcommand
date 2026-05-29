@@ -235,9 +235,13 @@
       font-size: 22px;
       letter-spacing: 0.01em;
       text-transform: uppercase;
+      transition: color .3s var(--ease);
     }
-    .logo .calm { color: var(--pine); }
+    /* Default (top of page, over dark hero) */
+    .logo .calm { color: var(--cream); transition: color .3s var(--ease); }
     .logo .cmd { color: var(--sand); }
+    /* Scrolled (over light sections) */
+    .nav.scrolled .logo .calm { color: var(--pine); }
 
     .nav-links {
       display: none;
@@ -247,14 +251,16 @@
     }
     .nav-links a {
       font-family: var(--font-body);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 13px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--ink);
+      color: var(--cream);
       position: relative;
       padding: 6px 0;
+      transition: color .3s var(--ease);
     }
+    .nav.scrolled .nav-links a { color: var(--ink); }
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -265,13 +271,17 @@
       transition: right .35s var(--ease);
     }
     .nav-links a:hover::after { right: 0; }
+
+    /* CTA: sand on top (high contrast over pine hero), pine when scrolled */
     .nav-links .nav-cta {
       padding: 12px 22px;
-      background: var(--pine);
-      color: var(--cream);
-      transition: background .25s var(--ease);
+      background: var(--sand);
+      color: var(--pine-dark);
+      transition: background .25s var(--ease), color .25s var(--ease);
     }
-    .nav-links .nav-cta:hover { background: var(--pine-dark); }
+    .nav-links .nav-cta:hover { background: var(--cream); color: var(--pine-dark); }
+    .nav.scrolled .nav-links .nav-cta { background: var(--pine); color: var(--cream); }
+    .nav.scrolled .nav-links .nav-cta:hover { background: var(--pine-dark); }
     .nav-links .nav-cta::after { display: none; }
     @media (min-width: 900px) {
       .nav-links { display: flex; }
@@ -286,16 +296,18 @@
       gap: 5px;
       width: 44px;
       height: 44px;
-      border: 1px solid rgba(28,28,26,.18);
+      border: 1px solid rgba(248,245,240,.4);
       transition: border-color .25s var(--ease);
     }
+    .nav.scrolled .burger { border-color: rgba(28,28,26,.18); }
     .burger span {
       display: block;
       width: 18px;
       height: 1.5px;
-      background: var(--ink);
-      transition: transform .35s var(--ease), opacity .25s var(--ease);
+      background: var(--cream);
+      transition: transform .35s var(--ease), opacity .25s var(--ease), background .25s var(--ease);
     }
+    .nav.scrolled .burger span { background: var(--ink); }
     .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .burger.open span:nth-child(2) { opacity: 0; }
     .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
